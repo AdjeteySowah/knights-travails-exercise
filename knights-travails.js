@@ -1,30 +1,44 @@
-  // [x, y] : x represents vertical-axis and y represents horizontal-axis
-
-const visitedTracker = [ 
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false]
-];
-
-  // if parentTracker[2][1] === [0, 0], then it means that,
-  // that position was reached from [0, 0] position(parentTracker[0][0])
-const parentTracker = [ 
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null, null]
-];
+function isOnBoard(pos) {
+  return (
+    Array.isArray(pos) &&
+    pos.length === 2 &&
+    Number.isInteger(pos[0]) &&
+    Number.isInteger(pos[1]) &&
+    pos[0] >= 0 && pos[0] <= 7 &&
+    pos[1] >= 0 && pos[1] <= 7
+  );
+}
 
 function knightMoves(startingPosition, endingPosition) {
+  if (!isOnBoard(startingPosition)) throw new Error('Invalid startingPosition: must be [0..7, 0..7]');
+  if (!isOnBoard(endingPosition))   throw new Error('Invalid endingPosition: must be [0..7, 0..7]');
+  
+    // [x, y] : x represents vertical-axis and y represents horizontal-axis
+
+  const visitedTracker = [ 
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false]
+  ];
+
+    // if parentTracker[2][1] === [0, 0], then it means that,
+    // that position was reached from [0, 0] position(parentTracker[0][0])
+  const parentTracker = [ 
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null]
+  ];
+
   const path = [];
 
   const queue = [];
